@@ -23,14 +23,19 @@ export default function useRequestResource({ endpoint, resourceLabel }) {
         enqueueSnackbar(formattedError);
     }, [enqueueSnackbar, setError, setLoading])
 
-    const getResourceList = useCallback(() => {
+    const getResourceList = useCallback(({ query = "" } = {}) => {
         setLoading(true);
-        axios.get(`/api/${endpoint}/`, getCommonOptions())
+        axios.get(`/api/${endpoint}/${query}`, getCommonOptions())
             .then((res) => {
                 setLoading(false);
-                setResourceList({
-                    results: res.data
-                })
+                if (res.data.results) {
+                    setResourceList(res.data);
+                }
+                else {
+                    setResourceList({
+                        results: res.data
+                    })
+                }
             }).catch(handleRequestResourceError)
     }, [endpoint, handleRequestResourceError, setLoading])
 
@@ -59,14 +64,25 @@ export default function useRequestResource({ endpoint, resourceLabel }) {
     const updateResource = useCallback((id, values, successCallback) => {
         setLoading(true);
         axios.patch(`/api/${endpoint}/${id}/`, values, getCommonOptions())
-            .then(() => {
+            .then((res) => {
+                const updated = res.data;
+                const newResourceList = {
+                    results: resourceList.results.map((r) => {
+                        if (r.id === id) {
+                            return updated;
+                        }
+                        return r;
+                    }),
+                    count: resourceList.count
+                }
+                setResourceList(newResourceList);
                 setLoading(false);
                 enqueueSnackbar(`${resourceLabel} updated`)
                 if (successCallback) {
                     successCallback();
                 }
             }).catch(handleRequestResourceError)
-    }, [endpoint, enqueueSnackbar, resourceLabel, handleRequestResourceError, setLoading])
+    }, [endpoint, enqueueSnackbar, resourceLabel, handleRequestResourceError, setLoading, resourceList])
 
     const deleteResource = useCallback((id) => {
         setLoading(true);

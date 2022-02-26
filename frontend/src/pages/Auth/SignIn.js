@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import { Formik } from "formik";
 import * as yup from "yup";
 import useRequestAuth from 'src/hooks/useRequestAuth';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const validationSchema = yup.object({
     username: yup.string().required("Email Address / Username is required"),
@@ -20,7 +20,6 @@ const validationSchema = yup.object({
 
 export default function SignIn() {
     const { login, loading } = useRequestAuth();
-    const navigate = useNavigate();
 
     const handleSubmit = (values) => {
         login(values)
