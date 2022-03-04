@@ -14,6 +14,7 @@ import {
     TableBody,
     Card,
     CardHeader,
+    useTheme
 } from "@mui/material";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
@@ -42,7 +43,9 @@ export function CardContentDistributionChart({
     isLoading,
     filters
 }) {
-    const textColor = ChartJS.defaults.color;
+    const theme = useTheme();
+    const textColor = theme.palette.mode === "dark" ? "#fff" : ChartJS.defaults.color;
+
     return (
         <Card elevation={4} sx={{ mb: (theme) => theme.spacing(2) }}>
             <CardHeader

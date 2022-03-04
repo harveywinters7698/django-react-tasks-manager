@@ -6,6 +6,10 @@ User = get_user_model()
 
 
 class Category(models.Model):
+
+    class Meta:
+        verbose_name_plural = "categories"
+
     name = models.CharField(max_length=100)
     color = models.CharField(max_length=6)
     created_at = models.DateTimeField(auto_now_add=True)

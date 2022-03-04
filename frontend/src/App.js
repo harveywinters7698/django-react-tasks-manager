@@ -19,9 +19,10 @@ import Dashboard from "./pages/Dashboard";
 import "./index.css";
 import RequestResetPassword from "./pages/Auth/RequestResetPassword";
 import ResetPasswordConfirm from "./pages/Auth/ResetPasswordConfirm";
+import ThemeModeProvider from "./contexts/ThemeModeProvider";
 
 export default function App() {
-  return <div>
+  return <ThemeModeProvider>
     <CssBaseline />
 
 
@@ -65,7 +66,7 @@ export default function App() {
 
 
 
-  </div>
+  </ThemeModeProvider>
 }
 
 ReactDOM.render(<App />, document.getElementById("root"))
