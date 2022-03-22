@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import environ
 import os
+import dj_database_url
 
 env = environ.Env()
 environ.Env.read_env()
@@ -25,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cff@p7v(%kb@8!n@ojtkr=g198)hw&wtzae6-tkp4gm)u)d3xt'
+SECRET_KEY = env('SECRET_KEY', default='123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (env('DEBUG', default='False') == 'True')
 
-ALLOWED_HOSTS = ['tasksmanagertest1.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -114,7 +115,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+IS_HEROKU = (env('IS_HEROKU', default='False') == 'True')
+if (IS_HEROKU == True):
+    DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
+    ALLOWED_HOSTS = ['tasksmanagertest1.herokuapp.com']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
