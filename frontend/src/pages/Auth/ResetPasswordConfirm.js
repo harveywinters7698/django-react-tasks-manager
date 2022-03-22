@@ -62,7 +62,6 @@ export default function SignUp() {
                         confirmPassword: "",
                         password: "",
                     }}
-                    validateOnBlur={false}
                     validateOnChange={false}
                 >
                     {(formik) => {
