@@ -12,7 +12,7 @@ export default function RequireAuth() {
     }
 
     if (isAuthenticated === true) {
-        return <Navigate to="/categories" />
+        return <Navigate to="/" />
     }
 
     return (

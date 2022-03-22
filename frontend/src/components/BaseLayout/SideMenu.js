@@ -9,6 +9,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import CategoryIcon from "@mui/icons-material/Category";
+import DashboardIcon from "@mui/icons-material/Dashboard"
+import ListAltIcon from "@mui/icons-material/ListAlt";
 
 import { NavLink } from "react-router-dom";
 
@@ -18,6 +20,18 @@ import { GlobalStyles, useTheme } from "@mui/material";
 const drawerWidth = 240;
 
 const listItems = [
+    {
+        key: "dashboard",
+        to: "/",
+        name: "Dashboard",
+        icon: <DashboardIcon />
+    },
+    {
+        key: "tasks",
+        to: "/tasks",
+        name: "Tasks",
+        icon: <ListAltIcon />
+    },
     {
         key: "categories",
         to: "/categories",
