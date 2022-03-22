@@ -20,6 +20,7 @@ import "./index.css";
 import RequestResetPassword from "./pages/Auth/RequestResetPassword";
 import ResetPasswordConfirm from "./pages/Auth/ResetPasswordConfirm";
 import ThemeModeProvider from "./contexts/ThemeModeProvider";
+import Admin from "./pages/Admin"
 
 export default function App() {
   return <ThemeModeProvider>
@@ -35,6 +36,9 @@ export default function App() {
             width: "100%"
           }}>
             <Routes>
+
+              <Route path="/admin" element={<Admin />} />
+
               <Route element={<RequireAuth />}>
                 <Route element={<BaseLayout />}>
                   <Route path="/categories" element={<Categories />} />
