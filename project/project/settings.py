@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-cff@p7v(%kb@8!n@ojtkr=g198)hw&wtzae6-tkp4gm)u)d3xt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tasksmanagertest1.herokuapp.com', 'localhost']
 
 
 # Application definition
