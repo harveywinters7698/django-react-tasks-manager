@@ -65,7 +65,8 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "auth/password-reset/confirm/{uid}/{token}",
     "SERIALIZERS": {
         'password_reset': 'users.serializers.CustomSendEmailResetSerializer'
-    }
+    },
+    "PASSWORD_RESET_CONFIRM_RETYPE": True,
 }
 
 MIDDLEWARE = [
