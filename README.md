@@ -4,6 +4,6 @@ Source code for a Udemy course [Full Stack Web Development with React, MUI, Djan
 
 Coupon Code: DJRTPROMO2022
 
-<img src="./thumbnail.png" width="375" height="211" />
+<img src="./preview.png" width="375" height="211" />
 
 <br />
