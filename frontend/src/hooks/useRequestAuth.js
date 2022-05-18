@@ -11,7 +11,7 @@ export default function useRequestAuth() {
     const [logoutPending, setLogoutPending] = useState(false);
     const { enqueueSnackbar } = useSnackbar();
     const [error, setError] = useState(null);
-    const { setIsAuthenticated } = useContext(AuthContext);
+    const { setIsAuthenticated, setUser } = useContext(AuthContext);
 
     const handleRequestError = useCallback((err) => {
         const formattedError = formatHttpApiError(err);
@@ -53,13 +53,14 @@ export default function useRequestAuth() {
             .then(() => {
                 localStorage.removeItem("authToken");
                 setLogoutPending(false);
+                setUser(null);
                 setIsAuthenticated(false);
             })
             .catch((err) => {
                 setLogoutPending(false);
                 handleRequestError(err);
             })
-    }, [handleRequestError, setLogoutPending, setIsAuthenticated])
+    }, [handleRequestError, setLogoutPending, setIsAuthenticated, setUser])
 
     return {
         register,
