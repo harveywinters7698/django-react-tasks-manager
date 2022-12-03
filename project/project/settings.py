@@ -31,7 +31,7 @@ SECRET_KEY = env('SECRET_KEY', default='123')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = (env('DEBUG', default='False') == 'True')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-react-tasks-manager-production.up.railway.app']
 
 
 # Application definition
@@ -116,10 +116,15 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-IS_HEROKU = (env('IS_HEROKU', default='False') == 'True')
-if (IS_HEROKU == True):
+
+# IS_HEROKU = (env('IS_HEROKU', default='False') == 'True')
+# if (IS_HEROKU == True):
+#     DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
+#     ALLOWED_HOSTS = ['tasksmanagertest1.herokuapp.com']
+
+# For railway app
+if (env('DATABASE_URL', default=None) is not None):
     DATABASES['default'] = dj_database_url.parse(env('DATABASE_URL'))
-    ALLOWED_HOSTS = ['tasksmanagertest1.herokuapp.com']
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
